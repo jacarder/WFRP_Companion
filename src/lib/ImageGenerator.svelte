@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { imageCollection } from '../stores';
+
 	let response: Promise<string>;
 	const generateImage = async () => {
 		response = fetch('/api/image-generator', {
@@ -6,7 +8,12 @@
 			headers: {
 				'content-type': 'application/json'
 			}
-		}).then((r) => r.text());
+		})
+			.then((r) => r.text())
+			.then((base64) => {
+				imageCollection.update((data) => [{ base64 }, ...data]);
+				return base64;
+			});
 	};
 </script>
 
