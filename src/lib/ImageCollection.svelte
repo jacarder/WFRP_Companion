@@ -12,11 +12,12 @@
 		})
 			.then((r) => r.json() as unknown as ImageResponse[])
 			.then((data) => {
-				imageCollection.set(data);
+				imageCollection.set(data.reverse());
 				return data;
 			});
 
 	imageCollection.subscribe((value) => {
+		value.length = 10;
 		imageData = value;
 	});
 </script>

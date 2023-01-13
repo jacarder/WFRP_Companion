@@ -3,7 +3,7 @@
 
 	let response: Promise<string>;
 	const generateImage = async () => {
-		response = fetch('/api/image-generator', {
+		response = fetch('/api/generate/image', {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json'

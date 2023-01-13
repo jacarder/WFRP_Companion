@@ -9,5 +9,12 @@ export const saveImage = async (base64: string) => {
 		base64
 	})
 }
-
+export const saveQuote = async (quote: string) => {
+	await supabase.from('openai_quotes').insert({
+		quote
+	})
+}
 export const getAllImages = async () => (await supabase.from('openai_images').select('base64')).data;
+export const getAllQuotes = async () => (await supabase.from('openai_quotes').select('quote')).data;
+export const getRandomQuote = async () => (await supabase.from('random_quotes').select('quote').limit(1).single()).data?.quote;
+export const getRandomNPC = async () => (await supabase.from('random_npc').select().limit(1).single()).data;
